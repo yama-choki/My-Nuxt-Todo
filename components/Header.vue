@@ -58,13 +58,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      addTodoDialog: false,
-      deleteTodoDialog: false,
-      todo: ''
-    }
-  }
 }
 </script>
 

@@ -30,7 +30,6 @@
 export default {
   data () {
     return {
-      todos: ['予定１', '予定２', '予定３']
     }
   }
 }
