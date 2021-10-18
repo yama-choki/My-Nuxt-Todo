@@ -1,5 +1,5 @@
 export const state = () => ({
-  todos: ['あれ', 'これ', 'それ']
+  todos: []
 })
 
 export const getters = {

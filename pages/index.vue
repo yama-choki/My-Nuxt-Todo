@@ -43,14 +43,14 @@
                   やることを追加する
                 </v-toolbar>
                 <div class="mx-5">
-                  <v-text-field v-model="todo" label="やること" class="mt-5" counter="10" />
-                  <!-- <v-text-field v-model="todo.text" label="やることの説明" class="mt-5" counter="50" />
+                  <v-text-field v-model="todo.title" label="やること" class="mt-5" counter="10" />
+                  <v-text-field v-model="todo.text" label="やることの説明" class="mt-5" counter="50" />
                   <h3 class="my-5 limit-title">
                     期限を入力してください
                   </h3>
                   <v-row justify="center">
                     <v-date-picker v-model="todo.limit" />
-                  </v-row> -->
+                  </v-row>
                 </div>
                 <v-card-actions class="justify-end">
                   <v-btn text color="primary" @click="addTodo()">
@@ -65,6 +65,7 @@
           </v-dialog>
         </v-app-bar>
       </header>
+
       <main>
         <div id="todos">
           <ul>
@@ -72,13 +73,13 @@
               <v-card elevation="2" class="mb-1" color="green accent-2">
                 <div class="todo">
                   <input type="checkbox" class="mx-5 mt-5">
-                  <h4>{{ todo }}</h4>
-                  <!-- <p class="time mx-5">
+                  <h4>{{ todo.title }}</h4>
+                  <p class="time mx-5">
                     {{ todo.limit }}
                   </p>
                   <p class="text mx-5">
                     {{ todo.text }}
-                  </p> -->
+                  </p>
                   <v-spacer />
                   <v-btn icon class="mt-2">
                     <v-icon>mdi-pencil-plus</v-icon>
@@ -101,13 +102,13 @@ export default {
   data () {
     return {
       addTodoDialog: false,
-      todo: ''
-      // todo: {
-      //   title: '',
-      //   text: '',
-      //   limit: '',
-      //   created: ''
-      // }
+      // todo: ''
+      todo: {
+        title: '',
+        text: '',
+        limit: '',
+        created: ''
+      }
     }
   },
   computed: {

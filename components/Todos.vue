@@ -58,4 +58,7 @@ export default {
   width: 200px;
   line-height: 50px;
 }
+.text{
+  line-height: 50px;
+}
 </style>
