@@ -9,7 +9,7 @@ export const state = () => ({
 
 export const getters = {
   todos: (state) => {
-    return state.todos.slice()
+    return state.todos
   }
 }
 
