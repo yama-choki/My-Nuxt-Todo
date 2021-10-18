@@ -69,10 +69,11 @@
       <main>
         <div id="todos">
           <ul>
-            <li v-for="(todo, index) in todos" :key="todo.id">
+            <li v-for="(todo, index) in todos" :key="todo">
               <v-card elevation="2" class="mb-1" color="green accent-2">
                 <div class="todo">
                   <input type="checkbox" class="mx-5 mt-5">
+                  <!-- <h4>{{ todo }}</h4> -->
                   <h4>{{ todo.title }}</h4>
                   <p class="time mx-5">
                     {{ todo.limit }}
@@ -120,7 +121,10 @@ export default {
     addTodo () {
       if (this.todo) {
         this.$store.commit('addTodo', this.todo)
-        this.todo = ''
+        // this.todo = ''
+        this.todo.title = ''
+        this.todo.text = ''
+        this.todo.limit = ''
         this.addTodoDialog = false
       }
     },
