@@ -63,17 +63,24 @@
               </v-card>
             </template>
           </v-dialog>
+
+          <template #extension>
+            <v-tabs align-with-title>
+              <v-tab>全て</v-tab>
+              <v-tab>完了</v-tab>
+              <v-tab>未完了</v-tab>
+            </v-tabs>
+          </template>
         </v-app-bar>
       </header>
 
       <main>
         <div id="todos">
           <ul>
-            <li v-for="(todo, index) in todos" :key="todo">
+            <li v-for="(todo, index) in todos" :key="todo.id">
               <v-card elevation="2" class="mb-1" color="green accent-2">
                 <div class="todo">
                   <input type="checkbox" class="mx-5 mt-5">
-                  <!-- <h4>{{ todo }}</h4> -->
                   <h4>{{ todo.title }}</h4>
                   <p class="time mx-5">
                     {{ todo.limit }}
@@ -112,6 +119,9 @@ export default {
       }
     }
   },
+  async fetch ({ store }) {
+    await store.dispatch('getTodos')
+  },
   computed: {
     todos () {
       return this.$store.getters.todos
@@ -120,8 +130,7 @@ export default {
   methods: {
     addTodo () {
       if (this.todo) {
-        this.$store.commit('addTodo', this.todo)
-        // this.todo = ''
+        this.$store.dispatch('submitTodo', this.todo)
         this.todo.title = ''
         this.todo.text = ''
         this.todo.limit = ''
@@ -142,5 +151,34 @@ main{
 }
 header{
   margin: 0 auto;
+}
+.limit-title{
+  display: flex;
+  justify-content: center;
+}
+#todos{
+  margin-top: 128px;
+}
+#todos ul {
+  padding: 0;
+}
+#todos ul li{
+  list-style: none;
+}
+.todo{
+  display: flex;
+  height: 50px;
+  align-content: center;
+}
+.todo h4{
+  width: 250px;
+  line-height: 50px;
+}
+.time{
+  width: 200px;
+  line-height: 50px;
+}
+.text{
+  line-height: 50px;
 }
 </style>

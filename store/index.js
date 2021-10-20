@@ -14,8 +14,8 @@ export const getters = {
 }
 
 export const mutations = {
-  addTodo (state, todo) {
-    state.todos.push(todo)
+  getTodos (state, todos) {
+    state.todos = todos
   },
   deleteTodo (state, index) {
     state.todos.splice(index, 1)
@@ -23,16 +23,25 @@ export const mutations = {
 }
 
 export const actions = {
-  submitTodo ({ commit }, todo) {
-    todosRef.add({})
+  getTodos ({ commit }) {
+    firebase.firestore().collection('todos').get()
       .then((res) => {
-        todosRef.doc(res.id)
-          .set({
-            todo,
-            id: res.id
-          }).then(() => {
-            commit('addTodos', todo)
-          })
+        const todos = []
+        res.forEach((x) => {
+          console.log(x.data())
+          todos.push(x.data())
+        })
+        commit('getTodos', todos)
       })
+  },
+  submitTodo ({ dispatch }, todo) {
+    todosRef.add({
+      isDone: false,
+      title: todo.title,
+      text: todo.text,
+      limit: todo.limit
+    }).then(() => {
+      dispatch('getTodos')
+    })
   }
 }
