@@ -24,11 +24,10 @@ export const mutations = {
 
 export const actions = {
   getTodos ({ commit }) {
-    firebase.firestore().collection('todos').get()
+    todosRef.orderBy('created', 'asc').get()
       .then((res) => {
         const todos = []
         res.forEach((x) => {
-          console.log(x.data())
           todos.push(x.data())
         })
         commit('getTodos', todos)
@@ -39,7 +38,8 @@ export const actions = {
       isDone: false,
       title: todo.title,
       text: todo.text,
-      limit: todo.limit
+      limit: todo.limit,
+      created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
       dispatch('getTodos')
     })
