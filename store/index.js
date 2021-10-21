@@ -43,5 +43,9 @@ export const actions = {
     }).then(() => {
       dispatch('getTodos')
     })
+  },
+  deleteTodo ({ dispatch }, id) {
+    todosRef.doc(id).delete()
+    dispatch('getTodos')
   }
 }

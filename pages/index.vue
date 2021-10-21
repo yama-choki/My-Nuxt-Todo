@@ -138,7 +138,7 @@ export default {
       }
     },
     deleteTodo (index) {
-      this.$store.commit('deleteTodo', index)
+      this.$store.dispatch('deleteTodo', this.todos[index].id)
     }
   }
 }
