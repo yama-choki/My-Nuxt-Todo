@@ -16,6 +16,7 @@ export const getters = {
 export const mutations = {
   getTodos (state, todos) {
     state.todos = todos
+    console.log(state.todos)
   },
   deleteTodo (state, index) {
     state.todos.splice(index, 1)
@@ -28,7 +29,15 @@ export const actions = {
       .then((res) => {
         const todos = []
         res.forEach((x) => {
-          todos.push(x.data())
+          const data = x.data()
+          todos.push({
+            isDone: data.isDone,
+            title: data.title,
+            text: data.text,
+            limit: data.limit,
+            created: data.created,
+            id: x.id
+          })
         })
         commit('getTodos', todos)
       })

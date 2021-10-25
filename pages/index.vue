@@ -80,7 +80,12 @@
             <li v-for="(todo, index) in todos" :key="todo.id">
               <v-card elevation="2" class="mb-1" color="green accent-2">
                 <div class="todo">
-                  <input type="checkbox" class="mx-5 mt-5">
+                  <input
+                    type="checkbox"
+                    class="mx-5 mt-5"
+                    :value="todo.isDone"
+                    @click="toggleIsDone()"
+                  >
                   <h4>{{ todo.title }}</h4>
                   <p class="time mx-5">
                     {{ todo.limit }}
