@@ -16,7 +16,6 @@ export const getters = {
 export const mutations = {
   getTodos (state, todos) {
     state.todos = todos
-    console.log(state.todos)
   },
   deleteTodo (state, index) {
     state.todos.splice(index, 1)

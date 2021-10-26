@@ -15,7 +15,7 @@
             />
           </template>
 
-          <v-app-bar-nav-icon />
+          <v-app-bar-nav-icon @click="getTodos()" />
 
           <v-toolbar-title>やることリスト</v-toolbar-title>
 
@@ -132,6 +132,11 @@ export default {
       return this.$store.getters.todos
     }
   },
+  created: {
+    getTodos () {
+      this.$store.dispatch('getTodos')
+    }
+  },
   methods: {
     addTodo () {
       if (this.todo) {
@@ -144,6 +149,9 @@ export default {
     },
     deleteTodo (index) {
       this.$store.dispatch('deleteTodo', this.todos[index].id)
+    },
+    getTodos () {
+      this.$store.dispatch('getTodos')
     }
   }
 }
