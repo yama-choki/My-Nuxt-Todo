@@ -124,18 +124,13 @@ export default {
       }
     }
   },
-  async fetch ({ store }) {
-    await store.dispatch('getTodos')
-  },
   computed: {
     todos () {
       return this.$store.getters.todos
     }
   },
-  created: {
-    getTodos () {
-      this.$store.dispatch('getTodos')
-    }
+  async created () {
+    await this.getTodos()
   },
   methods: {
     addTodo () {
