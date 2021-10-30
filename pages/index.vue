@@ -84,7 +84,7 @@
                     type="checkbox"
                     class="mx-5 mt-5"
                     :value="todo.isDone"
-                    @click="toggleIsDone()"
+                    @click="toggleIsDone(index)"
                   >
                   <h4>{{ todo.title }}</h4>
                   <p class="time mx-5">
@@ -105,6 +105,12 @@
             </li>
           </ul>
         </div>
+        <ul>
+          <li v-for="todo in todos" :key="todo.id">
+            {{ todo }}
+          </li>
+        </ul>
+        <input :value="text" type="text">
       </main>
     </div>
   </v-app>
@@ -147,6 +153,11 @@ export default {
     },
     getTodos () {
       this.$store.dispatch('getTodos')
+    },
+    toggleIsDone (index) {
+      console.log('確認１　pages/index発火')
+      this.$store.dispatch('toggleIsDone', this.todos[index].id)
+      console.log('確認７　pages/index終了')
     }
   }
 }

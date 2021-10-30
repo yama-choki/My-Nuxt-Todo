@@ -19,6 +19,13 @@ export const mutations = {
   },
   deleteTodo (state, index) {
     state.todos.splice(index, 1)
+  },
+  toggleIsDone (state, index) {
+    console.log('確認４　store/index/mutations発火')
+    console.log(state.todos)
+    console.log(index)
+    state.todos[index].isDone = !state.todos[index].isDone
+    console.log('確認５　store/index/mutations終了')
   }
 }
 
@@ -55,5 +62,12 @@ export const actions = {
   deleteTodo ({ dispatch }, id) {
     todosRef.doc(id).delete()
     dispatch('getTodos')
+  },
+  toggleIsDone ({ commit }, id) {
+    console.log('確認２　store/index/actions発火')
+    todosRef.doc(id).isDone = !todosRef.doc(id).isDone
+    console.log('確認３　firebaseのisDoneを変更した後')
+    commit('toggleIsDone')
+    console.log('確認６　store/index/actions終了')
   }
 }
