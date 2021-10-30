@@ -110,7 +110,6 @@
             {{ todo }}
           </li>
         </ul>
-        <input :value="text" type="text">
       </main>
     </div>
   </v-app>
@@ -156,7 +155,8 @@ export default {
     },
     toggleIsDone (index) {
       console.log('確認１　pages/index発火')
-      this.$store.dispatch('toggleIsDone', this.todos[index].id)
+      console.log(this.todos[index].id)
+      this.$store.dispatch('toggleIsDone', index)
       console.log('確認７　pages/index終了')
     }
   }

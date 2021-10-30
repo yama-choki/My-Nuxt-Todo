@@ -63,11 +63,12 @@ export const actions = {
     todosRef.doc(id).delete()
     dispatch('getTodos')
   },
-  toggleIsDone ({ commit }, id) {
+  toggleIsDone ({ commit, state }, index) {
     console.log('確認２　store/index/actions発火')
-    todosRef.doc(id).isDone = !todosRef.doc(id).isDone
+    const todoId = state.todos[index].id
+    todosRef.doc(todoId).isDone = !todosRef.doc(todoId).isDone
     console.log('確認３　firebaseのisDoneを変更した後')
-    commit('toggleIsDone')
+    commit('toggleIsDone', index)
     console.log('確認６　store/index/actions終了')
   }
 }
