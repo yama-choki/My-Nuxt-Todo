@@ -154,10 +154,7 @@ export default {
       this.$store.dispatch('getTodos')
     },
     toggleIsDone (index) {
-      console.log('確認１　pages/index発火')
-      console.log(this.todos[index].id)
       this.$store.dispatch('toggleIsDone', index)
-      console.log('確認７　pages/index終了')
     }
   }
 }

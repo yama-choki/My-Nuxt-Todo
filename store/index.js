@@ -21,11 +21,7 @@ export const mutations = {
     state.todos.splice(index, 1)
   },
   toggleIsDone (state, index) {
-    console.log('確認４　store/index/mutations発火')
-    console.log(state.todos)
-    console.log(index)
     state.todos[index].isDone = !state.todos[index].isDone
-    console.log('確認５　store/index/mutations終了')
   }
 }
 
@@ -63,12 +59,17 @@ export const actions = {
     todosRef.doc(id).delete()
     dispatch('getTodos')
   },
-  toggleIsDone ({ commit, state }, index) {
+  async toggleIsDone ({ commit, state }, index) {
     console.log('確認２　store/index/actions発火')
-    const todoId = state.todos[index].id
-    todosRef.doc(todoId).isDone = !todosRef.doc(todoId).isDone
-    console.log('確認３　firebaseのisDoneを変更した後')
+    const id = state.todos[index].id
+    const todo = state.todos[index]
+    await todosRef.doc(id).set({
+      isDone: !todo.isDone,
+      title: todo.title,
+      text: todo.text,
+      limit: todo.limit,
+      created: todo.created
+    })
     commit('toggleIsDone', index)
-    console.log('確認６　store/index/actions終了')
   }
 }
