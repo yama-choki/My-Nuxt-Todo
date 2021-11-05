@@ -26,6 +26,42 @@ export const mutations = {
 }
 
 export const actions = {
+  getCompletedTodos ({ commit }) {
+    todosRef.where('isDone', '==', true).get()
+      .then((res) => {
+        const todos = []
+        res.forEach((x) => {
+          const data = x.data()
+          todos.push({
+            isDone: data.isDone,
+            title: data.title,
+            text: data.text,
+            limit: data.limit,
+            created: data.created,
+            id: x.id
+          })
+        })
+        commit('getTodos', todos)
+      })
+  },
+  getIncompleteTodos ({ commit }) {
+    todosRef.where('isDone', '==', false).get()
+      .then((res) => {
+        const todos = []
+        res.forEach((x) => {
+          const data = x.data()
+          todos.push({
+            isDone: data.isDone,
+            title: data.title,
+            text: data.text,
+            limit: data.limit,
+            created: data.created,
+            id: x.id
+          })
+        })
+        commit('getTodos', todos)
+      })
+  },
   getTodos ({ commit }) {
     todosRef.orderBy('created', 'asc').get()
       .then((res) => {

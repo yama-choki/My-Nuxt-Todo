@@ -66,9 +66,15 @@
 
           <template #extension>
             <v-tabs align-with-title>
-              <v-tab>全て</v-tab>
-              <v-tab>完了</v-tab>
-              <v-tab>未完了</v-tab>
+              <v-tab @click="getTodos()">
+                全て
+              </v-tab>
+              <v-tab @click="getCompletedTodos()">
+                完了
+              </v-tab>
+              <v-tab @click="getIncompleteTodos()">
+                未完了
+              </v-tab>
             </v-tabs>
           </template>
         </v-app-bar>
@@ -152,6 +158,12 @@ export default {
     },
     getTodos () {
       this.$store.dispatch('getTodos')
+    },
+    getCompletedTodos () {
+      this.$store.dispatch('getCompletedTodos')
+    },
+    getIncompleteTodos () {
+      this.$store.dispatch('getIncompleteTodos')
     },
     toggleIsDone (index) {
       this.$store.dispatch('toggleIsDone', index)
