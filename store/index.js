@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import firebase from '@/plugins/firebase'
 
 const db = firebase.firestore()
@@ -22,6 +23,13 @@ export const mutations = {
   },
   toggleIsDone (state, index) {
     state.todos[index].isDone = !state.todos[index].isDone
+  },
+  sortTodos (state) {
+    state.todos.sort(function (a, b) {
+      if (a.created < b.created) {
+        return -1
+      }
+    })
   }
 }
 
@@ -42,6 +50,7 @@ export const actions = {
           })
         })
         commit('getTodos', todos)
+        commit('sortTodos')
       })
   },
   getIncompleteTodos ({ commit }) {
@@ -60,6 +69,7 @@ export const actions = {
           })
         })
         commit('getTodos', todos)
+        commit('sortTodos')
       })
   },
   getTodos ({ commit }) {
