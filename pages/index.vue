@@ -66,15 +66,19 @@
 
           <template #extension>
             <v-tabs align-with-title>
+              <v-spacer />
               <v-tab @click="getTodos()">
                 全て
               </v-tab>
+              <v-spacer />
               <v-tab @click="getCompletedTodos()">
                 完了
               </v-tab>
+              <v-spacer />
               <v-tab @click="getIncompleteTodos()">
                 未完了
               </v-tab>
+              <v-spacer />
             </v-tabs>
           </template>
         </v-app-bar>
@@ -84,7 +88,7 @@
         <div id="todos">
           <ul>
             <li v-for="(todo, index) in todos" :key="todo.id">
-              <v-card elevation="2" class="mb-1" color="green accent-2">
+              <v-card elevation="2" class="mb-1 green accent-2">
                 <div class="todo">
                   <input
                     type="checkbox"
@@ -111,11 +115,6 @@
             </li>
           </ul>
         </div>
-        <ul>
-          <li v-for="todo in todos" :key="todo.id">
-            {{ todo }}
-          </li>
-        </ul>
       </main>
     </div>
   </v-app>

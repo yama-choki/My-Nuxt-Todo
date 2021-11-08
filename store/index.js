@@ -106,7 +106,6 @@ export const actions = {
     dispatch('getTodos')
   },
   async toggleIsDone ({ commit, state }, index) {
-    console.log('確認２　store/index/actions発火')
     const id = state.todos[index].id
     const todo = state.todos[index]
     await todosRef.doc(id).set({
